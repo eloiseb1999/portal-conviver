@@ -13,9 +13,13 @@ O site abre em `http://localhost:3000`.
 
 ## Estrutura
 
-- `server.js` — servidor Express, serve o site e recebe o formulário de dúvidas.
-- `db.js` — cria e conecta o banco SQLite (`conviver.db`, gerado automaticamente na primeira execução).
-- `public/` — todo o front-end (páginas, CSS e JavaScript).
+- `server.js` — servidor Express: serve `public/` como arquivos estáticos e gera as páginas de conteúdo (Constituição, Estatuto do Idoso, BPC, Serviços) dinamicamente, a partir do banco.
+- `db.js` — conecta ao SQLite (`conviver.db`, gerado automaticamente) e garante as tabelas `duvidas` e `paginas`.
+- `seed-conteudo.js` — texto de cada página de conteúdo; é inserido/atualizado na tabela `paginas` toda vez que o servidor sobe.
+- `views.js` — monta o HTML (cabeçalho, navegação, rodapé) em torno do conteúdo lido do banco.
+- `public/` — páginas estáticas (home, dúvidas, painel admin) e os arquivos de CSS/JS.
+
+O conteúdo do portal (textos de direitos e benefícios) e os registros do formulário de dúvidas ficam no mesmo banco SQLite — as páginas de conteúdo são renderizadas puxando o texto da tabela `paginas` a cada requisição, não estão mais fixas em HTML.
 
 ## Publicar no Render
 
