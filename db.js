@@ -13,6 +13,15 @@ db.exec(`
     criado_em TEXT NOT NULL
   );
 
+  CREATE TABLE IF NOT EXISTS avaliacoes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    entendeu TEXT NOT NULL,
+    aprendeu_algo TEXT NOT NULL,
+    recomendaria TEXT NOT NULL,
+    comentario TEXT,
+    criado_em TEXT NOT NULL
+  );
+
   CREATE TABLE IF NOT EXISTS paginas (
     slug TEXT PRIMARY KEY,
     titulo TEXT NOT NULL,

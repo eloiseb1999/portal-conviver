@@ -56,6 +56,32 @@ app.get('/api/duvidas', (req, res) => {
   res.json(linhas);
 });
 
+const buscarAvaliacoes = db.prepare(
+  'SELECT entendeu, aprendeu_algo, recomendaria, comentario, criado_em FROM avaliacoes ORDER BY id DESC'
+);
+
+app.get('/api/avaliacoes', (req, res) => {
+  if (req.query.chave !== ADMIN_KEY) {
+    return res.status(401).json({ erro: 'Chave de acesso invalida.' });
+  }
+  res.json(buscarAvaliacoes.all());
+});
+
+app.post('/api/avaliacoes', (req, res) => {
+  const { entendeu, aprendeu_algo, recomendaria, comentario } = req.body;
+
+  if (!entendeu || !aprendeu_algo || !recomendaria) {
+    return res.status(400).json({ erro: 'Responda todas as perguntas antes de enviar.' });
+  }
+
+  const inserir = db.prepare(
+    'INSERT INTO avaliacoes (entendeu, aprendeu_algo, recomendaria, comentario, criado_em) VALUES (?, ?, ?, ?, ?)'
+  );
+  inserir.run(entendeu, aprendeu_algo, recomendaria, (comentario || '').trim(), new Date().toISOString());
+
+  res.json({ ok: true });
+});
+
 app.post('/api/duvidas', (req, res) => {
   const { nome, telefone, mensagem } = req.body;
 
