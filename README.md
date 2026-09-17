@@ -167,7 +167,7 @@ O projeto utiliza o Render como ambiente de hospedagem da aplicação.
 https://portal-conviver.onrender.com
 
 **Vídeo demonstrativo:**  
-https://drive.google.com/file/d/1MYtcD_TUe4UdY5od7c0c0W6AQybT4MRI/view?usp=sharing
+https://drive.google.com/file/d/1RQersnjpDbIdJRnyb2YOEm2-6N7-zTwi/view?usp=sharing
 
 ## Contexto acadêmico
 
